@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://source/User Interface/Dialog/DialogStarter.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.474272, 1, 0.462782 )
+
+[sub_resource type="CylinderMesh" id=2]
+top_radius = 0.001
+bottom_radius = 1.156
+radial_segments = 4
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.968627, 1, 0, 0.407843 )
+
+[sub_resource type="SphereMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.945098, 1, 0, 1 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "shinyanim_loop"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.1, 0 ), Vector3( 0, 0.9, 0 ), Vector3( 0, 1.1, 0 ), Vector3( 0, 0.9, 0 ), Vector3( 0, 1.1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.5, 0.5, 0.5 ), Vector3( 0.4, 0.4, 0.4 ), Vector3( 0.5, 0.5, 0.5 ), Vector3( 0.4, 0.4, 0.4 ), Vector3( 0.5, 0.5, 0.5 ) ]
+}
+
+[node name="DialogArea" type="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.389351, 0 )
+collision_mask = 2
+script = ExtResource( 1 )
+dialog_path = "res://source/User Interface/Dialog/dialogs/dialog1.json"
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.379367, 0 )
+shape = SubResource( 1 )
+
+[node name="Graphics" type="Spatial" parent="."]
+transform = Transform( -0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, 1.1, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Graphics"]
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Graphics"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1.10127, 0 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Graphics"]
+transform = Transform( 1, 0, 0, 0, -1, 0, 0, 0, 1, 0, -2, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "shinyanim_loop"
+anims/shinyanim_loop = SubResource( 6 )
+
+[connection signal="body_entered" from="." to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_DialogArea_body_exited"]

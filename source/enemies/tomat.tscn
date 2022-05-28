@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://source/enemies/ranged enemies/tomat/bomb.glb" type="PackedScene" id=1]
+[ext_resource path="res://source/enemies/enemy stuff/CharacterMover.tscn" type="PackedScene" id=2]
+[ext_resource path="res://source/Player/scenes/HealthManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://source/enemies/enemy stuff/HitBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/enemies/magician/magician/FireballSpawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/enemies/enemy stuff/Monster.gd" type="Script" id=7]
+[ext_resource path="res://source/enemies/enemy stuff/AimAtObject.gd" type="Script" id=10]
+[ext_resource path="res://source/Collectables/CollectableExp.tscn" type="PackedScene" id=11]
+[ext_resource path="res://source/enemies/enemy stuff/effects/BloodParticles.tscn" type="PackedScene" id=12]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.447709
+height = 1.64655
+
+[node name="Tomat" type="KinematicBody" groups=[
+"enemies",
+]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 7 )
+attack_range = 25.0
+attack_rate = 0.3
+
+[node name="Mesh" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+
+[node name="BoneAttachment" type="BoneAttachment" parent="Mesh/Armature/Skeleton" index="1"]
+transform = Transform( 0.00563225, -0.00135518, -0.00815115, -0.000679431, 0.00975524, -0.00209134, 0.00823505, 0.00173171, 0.00540232, 0.0624697, 1.72766, -0.0567066 )
+bone_name = "mixamorig_spine_1"
+
+[node name="HitBox" parent="Mesh/Armature/Skeleton/BoneAttachment" instance=ExtResource( 5 )]
+collision_mask = 4
+
+[node name="CollisionShape" parent="Mesh/Armature/Skeleton/BoneAttachment/HitBox" index="0"]
+transform = Transform( 0.552352, 0.814129, -0.179164, 0.261682, 0.0347223, 0.964529, 0.791472, -0.579643, -0.193864, -6.00425, -40.1448, 2.52552 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.28381, 0 )
+shape = SubResource( 1 )
+
+[node name="HealthManager" parent="." instance=ExtResource( 4 )]
+max_health = 40
+
+[node name="CharacterMover" parent="." instance=ExtResource( 2 )]
+max_speed = 10
+ignore_rotation = true
+
+[node name="AimAtObject" type="Spatial" parent="."]
+script = ExtResource( 10 )
+
+[node name="FireballSpawner" parent="AimAtObject" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.55121, 1.42717 )
+
+[node name="BloodParticles" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1721, -0.382408 )
+
+[node name="CollectableExp" parent="." instance=ExtResource( 11 )]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Mesh"]
+[editable path="Mesh/Armature/Skeleton/BoneAttachment/HitBox"]

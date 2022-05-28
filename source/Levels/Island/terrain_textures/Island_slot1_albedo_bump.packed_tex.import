@@ -1,0 +1,18 @@
+[remap]
+
+importer="hterrain_packed_texture_importer"
+type="StreamTexture"
+path.s3tc="res://.import/Island_slot1_albedo_bump.packed_tex-c2fdbc801de285a52184409e064059be.s3tc.stex"
+path.etc2="res://.import/Island_slot1_albedo_bump.packed_tex-c2fdbc801de285a52184409e064059be.etc2.stex"
+
+[deps]
+
+source_file="res://source/Levels/Island/terrain_textures/Island_slot1_albedo_bump.packed_tex"
+dest_files=[ "res://.import/Island_slot1_albedo_bump.packed_tex-c2fdbc801de285a52184409e064059be.s3tc.stex", "res://.import/Island_slot1_albedo_bump.packed_tex-c2fdbc801de285a52184409e064059be.etc2.stex" ]
+
+[params]
+
+compress/mode=2
+flags/repeat=1
+flags/filter=false
+flags/mipmaps=true

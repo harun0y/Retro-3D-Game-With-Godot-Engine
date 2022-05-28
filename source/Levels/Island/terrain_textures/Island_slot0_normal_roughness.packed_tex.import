@@ -1,0 +1,18 @@
+[remap]
+
+importer="hterrain_packed_texture_importer"
+type="StreamTexture"
+path.s3tc="res://.import/Island_slot0_normal_roughness.packed_tex-e63b8394f36d2fbe60c77d2c7225b2e8.s3tc.stex"
+path.etc2="res://.import/Island_slot0_normal_roughness.packed_tex-e63b8394f36d2fbe60c77d2c7225b2e8.etc2.stex"
+
+[deps]
+
+source_file="res://source/Levels/Island/terrain_textures/Island_slot0_normal_roughness.packed_tex"
+dest_files=[ "res://.import/Island_slot0_normal_roughness.packed_tex-e63b8394f36d2fbe60c77d2c7225b2e8.s3tc.stex", "res://.import/Island_slot0_normal_roughness.packed_tex-e63b8394f36d2fbe60c77d2c7225b2e8.etc2.stex" ]
+
+[params]
+
+compress/mode=2
+flags/repeat=1
+flags/filter=false
+flags/mipmaps=true

@@ -1,0 +1,144 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://source/User Interface/themes/health_bar_theme.tres" type="Theme" id=1]
+[ext_resource path="res://source/User Interface/themes/energy_bar_theme.tres" type="Theme" id=2]
+[ext_resource path="res://source/User Interface/UserInterface.gd" type="Script" id=3]
+[ext_resource path="res://source/User Interface/themes/bar_backgrounds.tres" type="Theme" id=4]
+[ext_resource path="res://circle32.png" type="Texture" id=5]
+
+[node name="UserInterface" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar2" type="ProgressBar" parent="."]
+margin_left = 8.18948
+margin_top = 8.1895
+margin_right = 88.1895
+margin_bottom = 20.1895
+theme = ExtResource( 4 )
+custom_colors/font_color = Color( 0.870588, 0.717647, 0.717647, 1 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+margin_left = 8.18948
+margin_top = 8.1895
+margin_right = 88.1895
+margin_bottom = 20.1895
+theme = ExtResource( 1 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnergyBar2" type="ProgressBar" parent="."]
+margin_left = 8.18948
+margin_top = 28.1895
+margin_right = 88.1895
+margin_bottom = 40.1895
+theme = ExtResource( 4 )
+custom_colors/font_color = Color( 0.870588, 0.717647, 0.717647, 1 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnergyBar" type="ProgressBar" parent="."]
+margin_left = 8.18948
+margin_top = 28.1895
+margin_right = 88.1895
+margin_bottom = 40.1895
+theme = ExtResource( 2 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="exp_label" type="Label" parent="."]
+margin_left = 598.0
+margin_top = 46.0
+margin_right = 638.0
+margin_bottom = 60.0
+text = "9999"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="circle32" type="Sprite" parent="exp_label"]
+position = Vector2( 18.6895, -22.9403 )
+texture = ExtResource( 5 )
+
+[node name="potion_label" type="Label" parent="."]
+margin_left = 6.94406
+margin_top = 460.707
+margin_right = 46.9441
+margin_bottom = 474.707
+text = "9999"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="potion" type="Sprite" parent="potion_label"]
+modulate = Color( 0.898039, 0.0196078, 0, 1 )
+position = Vector2( 20.0225, -13.8677 )
+scale = Vector2( 0.498567, 0.616551 )
+texture = ExtResource( 5 )
+
+[node name="circle35" type="Sprite" parent="potion_label/potion"]
+modulate = Color( 0.337255, 0.227451, 0.0235294, 1 )
+position = Vector2( 0, -16.8398 )
+scale = Vector2( 0.64503, 0.473755 )
+texture = ExtResource( 5 )
+
+[node name="circle36" type="Sprite" parent="potion_label/potion/circle35"]
+modulate = Color( 0.337255, 0.227451, 0.0235294, 1 )
+position = Vector2( 7.62939e-06, 10.0981 )
+scale = Vector2( 0.999998, -0.506364 )
+texture = ExtResource( 5 )
+
+[node name="bullet_label" type="Label" parent="."]
+margin_left = 55.3318
+margin_top = 460.826
+margin_right = 95.3318
+margin_bottom = 474.826
+text = "9999"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bullets" type="Sprite" parent="bullet_label"]
+position = Vector2( 18.9436, -16.0694 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 5 )
+
+[node name="circle35" type="Sprite" parent="bullet_label/bullets"]
+modulate = Color( 0.423529, 0.423529, 0.423529, 1 )
+position = Vector2( -0.471924, 0.943878 )
+rotation = 0.567232
+scale = Vector2( 0.17411, 1 )
+texture = ExtResource( 5 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

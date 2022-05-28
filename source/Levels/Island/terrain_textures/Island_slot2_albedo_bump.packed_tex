@@ -1,0 +1,8 @@
+{
+	"contains_albedo": true,
+	"resolution": 512,
+	"src": {
+		"a": "res://map_assets/Rocks006_1K-JPG/Rocks006_1K_Displacement.jpg",
+		"rgb": "res://map_assets/Rocks006_1K-JPG/Rocks006_1K_Color.jpg"
+	}
+}
