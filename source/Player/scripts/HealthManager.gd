@@ -17,7 +17,7 @@ func init():
 	cur_health = max_health
 	emit_signal("health_changed", cur_health)
 
-func hurt(damage: int, dir: Vector3):
+func hurt(damage: int, _dir: Vector3):
 	if cur_health <= 0:
 		return
 	cur_health -= damage

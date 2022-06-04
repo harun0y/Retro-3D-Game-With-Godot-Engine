@@ -510,15 +510,12 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.28
 shape = SubResource( 7 )
 
 [node name="HealthManager" parent="." instance=ExtResource( 4 )]
-visible = false
 
 [node name="CharacterMover" parent="." instance=ExtResource( 2 )]
-visible = false
 max_speed = 10
 ignore_rotation = true
 
 [node name="AimAtObject" type="Spatial" parent="."]
-visible = false
 script = ExtResource( 10 )
 
 [node name="FireballSpawner" parent="AimAtObject" instance=ExtResource( 6 )]
@@ -526,16 +523,16 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.55
 
 [node name="BloodParticles" parent="." instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50508, 0 )
-visible = false
 
 [node name="CollectableExp" parent="." instance=ExtResource( 11 )]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 12.0
 
 [node name="FaceCam" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.977445, -0.211188, 0, 0.211188, 0.977445, 0, 1.86409, 1.47336 )
-visible = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 [editable path="Mesh"]
 [editable path="Mesh/Armature/Skeleton/BoneAttachment2/Mesh2"]

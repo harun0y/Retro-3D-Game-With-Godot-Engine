@@ -5,6 +5,7 @@
 [ext_resource path="res://kaol.png" type="Texture" id=3]
 
 [node name="InventoryControl" type="Control"]
+visible = false
 modulate = Color( 1, 1, 1, 0.662745 )
 anchor_right = 1.0
 anchor_bottom = 1.0

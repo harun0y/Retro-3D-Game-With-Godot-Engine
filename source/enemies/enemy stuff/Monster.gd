@@ -30,13 +30,8 @@ var starting_pos:Vector3
 signal attack
 
 func _ready():
+	randomize()
 	starting_pos = global_transform.origin
-	
-	chase_timer = Timer.new()
-	chase_timer.wait_time = chasing_limit_time
-	chase_timer.connect("timeout", self, "set_state_idle")
-	chase_timer.one_shot = true
-	add_child(chase_timer)
 	
 	attack_timer = Timer.new()
 	attack_timer.wait_time = attack_rate
@@ -81,16 +76,16 @@ func set_state_chase():
 
 func set_state_attack():
 	current_state = STATES.ATTACK
-	chase_timer.start()
 	
 func set_state_tired():
 	current_state = STATES.TIRED
 
 func set_state_dead():
+	print("dead")
 	current_state = STATES.DEAD
 	anim_player.play("dead")
 	character_mover.freeze()
-	$CollisionShape.disabled = true
+	get_node("CollisionShape").disabled = true
 	expDrop.visible = true
 	expDrop.get_child(0).monitoring = true
 	$Timer.start()
@@ -105,17 +100,6 @@ func process_state_chase(delta):
 	var our_pos = global_transform.origin
 	path = nav.get_simple_path(our_pos, player_pos)
 	var goal_pos = player_pos
-	if path.size() > 1:
-		goal_pos = path[1]
-	var dir = goal_pos - our_pos
-	dir.y = 0
-	character_mover.set_move_vec(dir)
-	face_dir(dir, delta)
-
-func process_state_tired(delta):
-	var our_pos = global_transform.origin
-	path = nav.get_simple_path(our_pos, starting_pos)
-	var goal_pos = starting_pos
 	if path.size() > 1:
 		goal_pos = path[1]
 	var dir = goal_pos - our_pos
@@ -147,9 +131,14 @@ func hurt(damage: int, dir: Vector3):
 		set_state_chase()
 	health_manager.hurt(damage, dir)
 	bloodParticles.emitting = true
+	if current_state == STATES.ATTACK and randi()%5+1 != 5:
+		current_state = STATES.CHASE
+		#anim_player.play("impact") ANIMASYON EKLENECEK
+		anim_player.play("idle_loop")
 
 func start_attack():
 	can_attack = false
+
 	anim_player.play("attack")
 	attack_timer.start()
 
@@ -183,7 +172,7 @@ func face_dir(dir: Vector3, delta):
 		rotation.y += turn_speed * delta * turn_right
 
 func alert(rush):
-	if current_state != STATES.IDLE:
+	if current_state != STATES.IDLE or current_state == STATES.DEAD:
 		return
 	if rush:
 		set_state_chase()

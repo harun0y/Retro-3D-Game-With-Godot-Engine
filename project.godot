@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="unnamed"
-run/main_scene="res://source/Levels/TestLevel.tscn"
+run/main_scene="res://source/Levels/Island/Island.tscn"
 config/icon="res://icon.png"
 
 [autoload]

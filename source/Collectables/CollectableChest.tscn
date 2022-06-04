@@ -1,0 +1,225 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://map_assets/chest/chest.glb" type="PackedScene" id=1]
+[ext_resource path="res://wood.png" type="Texture" id=2]
+[ext_resource path="res://map_assets/chest/chest_lowres.PNG" type="Texture" id=3]
+[ext_resource path="res://source/Collectables/CollectableChest.gd" type="Script" id=4]
+[ext_resource path="res://source/Player/player assets/weapon meshes/KaolSwords/psx_swords.tres" type="Material" id=5]
+[ext_resource path="res://source/Player/player assets/weapon meshes/KaolSwords/KaolSwords.glb" type="PackedScene" id=6]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.904751, 0.494879, 0.638644 )
+
+[sub_resource type="Shader" id=2]
+code = "shader_type spatial; 
+render_mode skip_vertex_transform, diffuse_lambert_wrap;
+
+uniform vec4 color : hint_color;
+uniform sampler2D albedoTex : hint_albedo;
+uniform float specular_intensity : hint_range(0, 1);
+uniform float resolution = 256;
+uniform float cull_distance = 1000;
+uniform vec2 uv_scale = vec2(1.0, 1.0);
+uniform vec2 uv_offset = vec2(.0, .0);
+
+varying vec4 vertex_coordinates;
+
+void vertex() {
+	UV = UV * uv_scale + uv_offset;
+	
+	float vertex_distance = length((MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+	
+	VERTEX = (MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	NORMAL = abs(vec4(NORMAL, 1.) * MODELVIEW_MATRIX).xyz;
+	float vPos_w = (PROJECTION_MATRIX * vec4(VERTEX, 1.0)).w;
+	VERTEX.xy = vPos_w * floor(resolution * VERTEX.xy / vPos_w) / resolution;
+	vertex_coordinates = vec4(UV * VERTEX.z, VERTEX.z, .0);
+	
+	if (vertex_distance > cull_distance)
+		VERTEX = vec3(.0);
+}
+
+void fragment() {
+	vec4 tex = texture(albedoTex, vertex_coordinates.xy / vertex_coordinates.z);
+	
+	ALBEDO = tex.rgb * color.rgb;
+	SPECULAR = specular_intensity;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/specular_intensity = null
+shader_param/resolution = 100.0
+shader_param/cull_distance = 1000.0
+shader_param/uv_scale = Vector2( 1, 1 )
+shader_param/uv_offset = Vector2( 0, 0 )
+shader_param/albedoTex = ExtResource( 3 )
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 0.660368, 1, 0.664695 )
+
+[sub_resource type="Animation" id=13]
+resource_name = "anim_loop"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KaolSwords:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -12.588 ), Vector3( 0, 360, -12.588 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("KaolSwords:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.408203, 0 ), Vector3( 0, 0.2, 0 ), Vector3( 0, 0.408203, 0 ) ]
+}
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 1, 1, 1, 0.470588 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0.0110294, 0.973517 ), 0.0, -1.37059, 0, 0, Vector2( 0.996324, 0.0158898 ), -6.46911, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3( 0, 50.585, 0 )
+flatness = 0.34
+gravity = Vector3( 0, -3, 0 )
+initial_velocity = 0.2
+linear_accel = 16.9
+linear_accel_random = 1.0
+scale = 0.7
+scale_curve = SubResource( 6 )
+
+[sub_resource type="QuadMesh" id=8]
+
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.513726, 0.513726, 0.513726, 0.0941176 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3( 0, 55, 0 )
+flatness = 0.34
+gravity = Vector3( 0, -3, 0 )
+initial_velocity = 0.2
+linear_accel = 16.9
+linear_accel_random = 1.0
+scale = 0.7
+scale_curve = SubResource( 6 )
+
+[sub_resource type="SphereMesh" id=11]
+radius = 0.5
+height = 1.0
+
+[node name="CollectableChest" type="StaticBody" groups=[
+"chest",
+]]
+collision_layer = 3
+collision_mask = 4
+script = ExtResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00941277, 0.495424, 0.0123328 )
+shape = SubResource( 1 )
+
+[node name="Mesh" type="Spatial" parent="."]
+
+[node name="chest" parent="Mesh" instance=ExtResource( 1 )]
+visible = false
+
+[node name="crate_mesh" parent="Mesh/chest" index="0"]
+material/0 = SubResource( 3 )
+
+[node name="KaolSwords" parent="Mesh" instance=ExtResource( 6 )]
+transform = Transform( -0.487157, -0.108785, -0.029044, -0.108969, 0.487981, 0, 0.0283459, 0.00632983, -0.499156, 0, 0.203852, 0 )
+
+[node name="drslayer" parent="Mesh/KaolSwords" index="0"]
+visible = false
+material/0 = ExtResource( 5 )
+
+[node name="hslayer" parent="Mesh/KaolSwords" index="1"]
+visible = false
+material/0 = ExtResource( 5 )
+
+[node name="HR sword" parent="Mesh/KaolSwords" index="2"]
+visible = false
+material/0 = ExtResource( 5 )
+
+[node name="Area" type="Area" parent="Mesh/KaolSwords"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Mesh/KaolSwords/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.905404, 0 )
+shape = SubResource( 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mesh"]
+anims/anim_loop = SubResource( 13 )
+
+[node name="Graphics" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468163, 0 )
+
+[node name="woodParticles" type="Particles" parent="Graphics"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112885, 0 )
+material_override = SubResource( 4 )
+emitting = false
+amount = 15
+lifetime = 0.8
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+fixed_fps = 30
+local_coords = false
+process_material = SubResource( 7 )
+draw_pass_1 = SubResource( 8 )
+
+[node name="dustParticles" type="Particles" parent="Graphics"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112885, 0 )
+material_override = SubResource( 9 )
+cast_shadow = 0
+emitting = false
+amount = 15
+lifetime = 0.8
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+fixed_fps = 30
+local_coords = false
+process_material = SubResource( 10 )
+draw_pass_1 = SubResource( 11 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 12.0
+one_shot = true
+
+[connection signal="body_entered" from="Mesh/KaolSwords/Area" to="." method="_on_Area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="queue_free"]
+
+[editable path="Mesh/chest"]
+[editable path="Mesh/KaolSwords"]

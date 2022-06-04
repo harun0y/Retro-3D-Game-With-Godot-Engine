@@ -42,7 +42,7 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/specular_intensity = null
-shader_param/resolution = 200.0
+shader_param/resolution = 500.0
 shader_param/cull_distance = 1000.0
 shader_param/uv_scale = Vector2( 1, 1 )
 shader_param/uv_offset = Vector2( 0, 0 )

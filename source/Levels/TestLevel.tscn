@@ -1,10 +1,14 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://source/Player/scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://source/enemies/Mage.tscn" type="PackedScene" id=2]
 [ext_resource path="res://kenney_prototypetextures/PNG/Dark/texture_01.png" type="Texture" id=3]
 [ext_resource path="res://kenney_prototypetextures/PNG/Light/texture_07.png" type="Texture" id=4]
 [ext_resource path="res://source/User Interface/Dialog/DialogStarterArea.tscn" type="PackedScene" id=5]
+[ext_resource path="res://source/enemies/tomat.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/enemies/Blitz.tscn" type="PackedScene" id=7]
+[ext_resource path="res://source/Collectables/CollectableBarrel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://source/Collectables/CollectableChest.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -25,7 +29,7 @@ uv1_scale = Vector3( 50, 5, 0 )
 
 [sub_resource type="Environment" id=6]
 background_mode = 1
-background_color = Color( 1, 1, 1, 1 )
+background_color = Color( 0.533333, 0.533333, 0.533333, 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 fog_color = Color( 0.596078, 0.545098, 0.521569, 1 )
 fog_sun_color = Color( 1, 0.0470588, 0, 1 )
@@ -110,6 +114,13 @@ material/0 = SubResource( 5 )
 [node name="CollisionShape" type="CollisionShape" parent="meshes/MeshInstance5/StaticBody"]
 shape = SubResource( 3 )
 
+[node name="CollectableBarrel" parent="meshes" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -69.1254, 1.41127, 0 )
+
+[node name="CollectableChest" parent="meshes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -78.6714, 0.967717, 0 )
+sword_type = "drslayer"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 6 )
 
@@ -117,41 +128,41 @@ environment = SubResource( 6 )
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -41.8897, 3, 2.57004 )
 
 [node name="Skeleton" parent="Player/Pivot/combined_kaol/kaol bones" index="0"]
-bones/0/bound_children = [ NodePath("hips_bone") ]
-bones/1/bound_children = [ NodePath("spine_bone") ]
-bones/5/bound_children = [ NodePath("head_bone") ]
-bones/8/bound_children = [ NodePath("l_arm_bone") ]
-bones/12/bound_children = [ NodePath("r_arm_bone") ]
-bones/14/bound_children = [ NodePath("BoneAttachment") ]
-bones/15/bound_children = [ NodePath("l_leg_bone") ]
-bones/20/bound_children = [ NodePath("r_leg_bone") ]
+bones/0/bound_children = [  ]
+bones/1/bound_children = [  ]
+bones/5/bound_children = [  ]
+bones/8/bound_children = [  ]
+bones/12/bound_children = [  ]
+bones/14/bound_children = [  ]
+bones/15/bound_children = [  ]
+bones/20/bound_children = [  ]
 
 [node name="head_bone" parent="Player/Pivot/combined_kaol/kaol bones/Skeleton" index="1"]
-transform = Transform( 0.999358, -0.0203557, 0.0294903, -0.0186466, 0.407362, 0.913076, -0.0305995, -0.91304, 0.406721, 0.969838, 9.07354, -69.7173 )
+transform = Transform( 0.9994, -0.0199001, 0.0283516, -0.0177321, 0.409191, 0.912277, -0.0297556, -0.912232, 0.408592, 1.17098, 9.08788, -69.7816 )
 
 [node name="l_arm_bone" parent="Player/Pivot/combined_kaol/kaol bones/Skeleton" index="2"]
-transform = Transform( 0.129806, 0.649811, -0.748929, -0.980274, -0.0294287, -0.195438, -0.149038, 0.759525, 0.633173, 10.7616, 4.85132, -68.5214 )
+transform = Transform( 0.133669, 0.660942, -0.738436, -0.979638, -0.0245121, -0.199271, -0.149807, 0.750037, 0.644208, 10.9846, 4.91484, -68.6961 )
 
 [node name="r_arm_bone" parent="Player/Pivot/combined_kaol/kaol bones/Skeleton" index="3"]
-transform = Transform( -0.319391, -0.740773, 0.59097, 0.94626, -0.282749, 0.156987, 0.0508041, 0.609351, 0.791271, -9.43624, 3.15356, -68.651 )
+transform = Transform( -0.320818, -0.742277, 0.588304, 0.945607, -0.286358, 0.154361, 0.053886, 0.605826, 0.793771, -9.23463, 3.13696, -68.7407 )
 
 [node name="spine_bone" parent="Player/Pivot/combined_kaol/kaol bones/Skeleton" index="4"]
-transform = Transform( 0.996986, 0.0502928, 0.0590673, -0.0694195, 0.238484, 0.968662, 0.0346301, -0.969843, 0.241257, 0.38167, 0.297791, -53.051 )
+transform = Transform( 0.997346, 0.0456963, 0.0566866, -0.0661109, 0.242099, 0.967997, 0.03051, -0.969175, 0.244478, 0.649924, 0.277184, -53.1275 )
 
 [node name="l_leg_bone" parent="Player/Pivot/combined_kaol/kaol bones/Skeleton" index="5"]
-transform = Transform( -0.660084, 0.618938, 0.425488, 0.743183, 0.457108, 0.488385, 0.107769, 0.638723, -0.761826, 5.69103, -0.59376, -45.8989 )
+transform = Transform( -0.66135, 0.615059, 0.429128, 0.742865, 0.459557, 0.486567, 0.102044, 0.640709, -0.760947, 5.95925, -0.604715, -45.9742 )
 
 [node name="CollisionShape" parent="Player/Pivot/combined_kaol/kaol bones/Skeleton/l_leg_bone/Area" index="0"]
 transform = Transform( 1, -2.98023e-08, -5.96046e-08, 1.19209e-07, 1, -1.04308e-07, -5.96046e-08, -2.98023e-08, 1, -1.52588e-05, 10.1595, 7.62939e-06 )
 
 [node name="r_leg_bone" parent="Player/Pivot/combined_kaol/kaol bones/Skeleton" index="6"]
-transform = Transform( -0.759077, -0.559492, -0.332897, -0.501517, 0.176409, 0.846984, -0.415172, 0.809845, -0.414485, -4.92352, -0.762716, -45.9223 )
+transform = Transform( -0.761818, -0.555573, -0.3332, -0.500267, 0.177666, 0.84746, -0.411646, 0.812264, -0.413267, -4.65529, -0.773686, -45.9974 )
 
 [node name="hips_bone" parent="Player/Pivot/combined_kaol/kaol bones/Skeleton" index="7"]
-transform = Transform( 0.999985, -0.000449462, -0.00542297, 0.00542296, 0.164631, 0.98634, 0.000449467, -0.986355, 0.164631, 0.382451, -0.227816, -48.4475 )
+transform = Transform( 0.999985, -0.000445715, -0.00542226, 0.00542224, 0.163298, 0.986562, 0.000445721, -0.986576, 0.163298, 0.650688, -0.242206, -48.5233 )
 
 [node name="BoneAttachment" parent="Player/Pivot/combined_kaol/kaol bones/Skeleton" index="8"]
-transform = Transform( 0.893451, 0.338723, 0.29498, -0.444083, 0.567682, 0.693201, 0.0673488, -0.750336, 0.657617, -17.5787, 12.521, -68.2435 )
+transform = Transform( 0.893834, 0.340283, 0.292008, -0.44318, 0.571361, 0.690752, 0.0682096, -0.74683, 0.661508, -17.3909, 12.4917, -68.3181 )
 
 [node name="Camera" parent="Player/SpringArm" index="0"]
 current = true
@@ -164,6 +175,12 @@ navmesh = SubResource( 7 )
 
 [node name="Mage" parent="Navigation" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="Tomat" parent="Navigation" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.7008, 0, 0 )
+
+[node name="Blitz" parent="Navigation" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.0957, 2.70268, 2.77543 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, 0, 37.2995, 0 )

@@ -31,6 +31,9 @@ var isAreainsideTheBody = false
 var keyPressTime = 0
 var heavyControl = false
 var experience = 0
+var bullet_amount = 3
+var pot_amount = 3
+var level = 1
 
 onready var animationPlayer = $Pivot/combined_kaol/AnimationPlayer
 onready var spring_arm = $SpringArm
@@ -41,6 +44,8 @@ onready var energy_manager = $EnergyManager
 onready var health_bar = $UserInterface/HealthBar
 onready var energy_bar = $UserInterface/EnergyBar
 onready var exp_label = $UserInterface/exp_label
+onready var pot_label = $UserInterface/potion_label
+onready var bullet_label = $UserInterface/bullet_label
 onready var alert_area_hearing = $AlertAreaHearing
 onready var alert_area_los = $AlertAreaLos
 onready var hitbox = $"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment/KaolSwords/Position3D/DS_HitBox"
@@ -61,7 +66,8 @@ func _ready():
 	health_manager.connect("dead", self, "kill")
 	health_bar.value = health_manager.cur_health
 	energy_bar.value = energy_manager.cur_energy
-
+	
+	$UserInterface.visible = true
 
 func _physics_process(delta): #saldırırken yerinde duracak, roll atınca saldırı bozulcak ama roll input vectörü alması lazım yoksa son durduğu yere gidecke olmaz öyle
 	update_bars()
@@ -84,7 +90,7 @@ func _physics_process(delta): #saldırırken yerinde duracak, roll atınca sald�
 	apply_controller_rotation()
 	#frozenControl()
 	heal(healing_amount)
-	walk(delta)
+	walk()
 	jump()
 	roll()
 	attack_button_control(delta)
@@ -143,7 +149,7 @@ func jump():
 	if Input.is_action_just_released("jump") and velocity.y > jump_impulse / 2:
 		velocity.y = jump_impulse / 2
 
-func walk(delta):
+func walk():
 	lerp(spring_arm.rotation.y, rotation.y, 10)
 	if is_on_floor():
 		if velocity.length() >= 0:
@@ -170,10 +176,15 @@ func attack_button_control(delta):
 		keyPressTime = 0
 
 func attack(heavy):
-	if heavy and !isAttacking and energy_manager.energy_control(energy_cost*2):
+	if heavy and !isAttacking and energy_manager.energy_control(energy_cost*2) and bullet_amount > 0:
+		isAttacking = true
+		frozen = true
 		$AnimationTree.set("parameters/States/current", 3)
 		$AnimationTree.set("parameters/OneShotAll/active", true)
+		$Timers/AttackTimer.wait_time = animationPlayer.get_animation("gunplay").length
+		$Timers/AttackTimer.start()
 		$Timers/FireTimer.start()
+		bullet_amount -= 1 
 	elif is_on_floor() and comboCounter == 0 and !isAttacking and !isHealing and energy_manager.energy_control(energy_cost):
 		isAttacking = true
 		frozen = true
@@ -212,9 +223,23 @@ func damageControl():
 			if body.is_in_group("enemies") and body.has_method("hurt"):
 				isAreainsideTheBody = true
 				body.hurt(damage, Vector3.ZERO)
+			if body.is_in_group("destructible"):
+				body.destroy()
+				pot_amount += body.pot_value
+				bullet_amount += body.bullet_value
+				body.pot_value = 0
+				body.bullet_value = 0
+			if body.is_in_group("chest"):
+				body.destroy()
+				$"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment/KaolSwords/drslayer".visible = false
+				$"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment/KaolSwords/hslayer".visible = false
+				$"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment/KaolSwords/HR sword".visible = false
+				var path: String = "Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment/KaolSwords/" + body.sword_type
+				get_node(path).visible = true
+				
 
 func heal(amount):
-	if Input.is_action_just_pressed("1Y") and is_on_floor():
+	if not $AnimationTree.get("parameters/OneShotInteract/active") and Input.is_action_just_pressed("1Y") and is_on_floor() and pot_amount > 0:
 # warning-ignore:integer_division
 		isHealing = true
 		$Timers/HealTimer.start()
@@ -222,16 +247,17 @@ func heal(amount):
 		$AnimationTree.set("parameters/InteractStates/current", 0)
 		$AnimationTree.set("parameters/OneShotInteract/active", true)
 		healing_amount = amount
-func AlertAreaLos_body_exited(body):
+		pot_amount -= 1
+func AlertAreaLos_body_exited(_body):
 	hasBodyinLos = false
-func AlertAreaLos_body_entered(body):
+func AlertAreaLos_body_entered(_body):
 	hasBodyinLos = true
 	var nearby_enemies = alert_area_los.get_overlapping_bodies()
 	for nearby_enemy in nearby_enemies:
 		if nearby_enemy.has_method("alert"):
 			nearby_enemy.alert(false)
 
-func AlertAreaHearing_body_entered(body):
+func AlertAreaHearing_body_entered(_body):
 	var nearby_enemies = alert_area_hearing.get_overlapping_bodies()
 	for nearby_enemy in nearby_enemies:
 		if nearby_enemy.has_method("alert"):
@@ -242,11 +268,13 @@ func hurt(damage, dir):
 	$BloodParticles.emitting = true
 
 func update_bars():
+	pot_label.text = str(pot_amount)
+	bullet_label.text = str(bullet_amount)
 	health_bar.value = health_manager.cur_health
 	energy_bar.value = energy_manager.cur_energy
 	exp_label.text = str(experience)
-	if Input.is_action_just_pressed("pad_select"):
-		$InventoryControl.visible =  !$InventoryControl.visible 
+	if velocity.length() > 1:
+		$InventoryControl.visible = false
 
 func kill():
 	dead = true
