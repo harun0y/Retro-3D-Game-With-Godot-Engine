@@ -31,8 +31,8 @@ var isAreainsideTheBody = false
 var keyPressTime = 0
 var heavyControl = false
 var experience = 0
-var bullet_amount = 3
-var pot_amount = 3
+var bullet_amount = 100
+var pot_amount = 100
 var level = 1
 
 onready var animationPlayer = $Pivot/combined_kaol/AnimationPlayer
@@ -181,15 +181,15 @@ func attack(heavy):
 		frozen = true
 		$AnimationTree.set("parameters/States/current", 3)
 		$AnimationTree.set("parameters/OneShotAll/active", true)
-		$Timers/AttackTimer.wait_time = animationPlayer.get_animation("gunplay").length
+		$Timers/AttackTimer.wait_time = animationPlayer.get_animation("gunplay").length - 0.5
 		$Timers/AttackTimer.start()
 		$Timers/FireTimer.start()
 		bullet_amount -= 1 
 	elif is_on_floor() and comboCounter == 0 and !isAttacking and !isHealing and energy_manager.energy_control(energy_cost):
 		isAttacking = true
 		frozen = true
-		$Timers/AttackTimer.wait_time = animationPlayer.get_animation("combo attack no 1").length - 1.2
-		$Timers/AttackTimer/ComboTimer.wait_time = animationPlayer.get_animation("combo attack no 1").length - 0.45
+		$Timers/AttackTimer.wait_time = animationPlayer.get_animation("combo attack no 1").length - 1.5
+		$Timers/AttackTimer/ComboTimer.wait_time = animationPlayer.get_animation("combo attack no 1").length 
 		$Timers/AttackTimer.start()
 		$Timers/AttackTimer/ComboTimer.start()
 		$AnimationTree.set("parameters/States/current", 0)
@@ -199,8 +199,8 @@ func attack(heavy):
 	elif is_on_floor() and comboCounter == 1 and !isAttacking and energy_manager.energy_control(energy_cost):
 		isAttacking = true
 		frozen = true
-		$Timers/AttackTimer.wait_time = animationPlayer.get_animation("combo attack no 2").length - 0.75
-		$Timers/AttackTimer/ComboTimer.wait_time = animationPlayer.get_animation("combo attack no 2").length - 0.2
+		$Timers/AttackTimer.wait_time = animationPlayer.get_animation("combo attack no 2").length - 0.7
+		$Timers/AttackTimer/ComboTimer.wait_time = animationPlayer.get_animation("combo attack no 2").length + 0.3
 		$Timers/AttackTimer.start()
 		$Timers/AttackTimer/ComboTimer.start()
 		$AnimationTree.set("parameters/States/current", 1)
@@ -210,7 +210,7 @@ func attack(heavy):
 	elif is_on_floor() and comboCounter == 2 and !isAttacking and energy_manager.energy_control(energy_cost):
 		isAttacking = true
 		frozen = true
-		$Timers/AttackTimer.wait_time = animationPlayer.get_animation("attack combo no 3").length
+		$Timers/AttackTimer.wait_time = animationPlayer.get_animation("attack combo no 3").length - 1.5
 		$Timers/AttackTimer.start()
 		$AnimationTree.set("parameters/States/current", 2)
 		$AnimationTree.set("parameters/OneShotAll/active", true)
@@ -231,17 +231,13 @@ func damageControl():
 				body.bullet_value = 0
 			if body.is_in_group("chest"):
 				body.destroy()
-				$"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment/KaolSwords/drslayer".visible = false
-				$"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment/KaolSwords/hslayer".visible = false
-				$"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment/KaolSwords/HR sword".visible = false
-				var path: String = "Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment/KaolSwords/" + body.sword_type
-				get_node(path).visible = true
-				
 
 func heal(amount):
 	if not $AnimationTree.get("parameters/OneShotInteract/active") and Input.is_action_just_pressed("1Y") and is_on_floor() and pot_amount > 0:
 # warning-ignore:integer_division
 		isHealing = true
+		$"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment2/gun".visible = false
+		$"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment2/potion".visible = true
 		$Timers/HealTimer.start()
 		max_speed = MAX_SPEED / 3
 		$AnimationTree.set("parameters/InteractStates/current", 0)
@@ -279,8 +275,9 @@ func update_bars():
 func kill():
 	dead = true
 	$AnimationTree.active = false
-	$Pivot/combined_kaol/AnimationPlayer.play("t pose")
+	$Pivot/combined_kaol/AnimationPlayer.play("death")
 	freeze()
+	$Control/AnimationPlayer.play("death_screen")
 
 func freeze():
 	frozen = true
@@ -323,6 +320,8 @@ func _on_HealTimer_timeout():
 	health_manager.heal(healing_amount)
 	max_speed = MAX_SPEED
 	isHealing = false
+	$"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment2/gun".visible = true
+	$"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment2/potion".visible = false
 
 func _on_ComboTimer_timeout():
 	comboCounter = 0
@@ -341,9 +340,10 @@ func _on_DS_HitBox_body_exited(body):
 
 func _on_FireTimer_timeout():
 	energy_manager.burn(energy_cost*2)
-	$FireballSpawner.fire()
+	$Pivot/bulletSpawner.fire()
 
-
+func restart_game():
+	get_tree().change_scene("res://source/Levels/Island/Island.tscn")
 
 
 

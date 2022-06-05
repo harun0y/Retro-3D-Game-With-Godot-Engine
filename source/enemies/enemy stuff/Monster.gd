@@ -81,7 +81,6 @@ func set_state_tired():
 	current_state = STATES.TIRED
 
 func set_state_dead():
-	print("dead")
 	current_state = STATES.DEAD
 	anim_player.play("dead")
 	character_mover.freeze()

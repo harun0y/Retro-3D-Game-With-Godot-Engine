@@ -5,6 +5,8 @@ var scene = preload("res://source/User Interface/Dialog/DialogControl.tscn")
 
 
 func _on_Area_body_entered(body):
+	if not get_parent().has_node("Navigation/Mage"):
+		queue_free()
 	if body.is_in_group("player"):
 		$Graphics.visible = false
 		var dialog_instance = scene.instance()
@@ -15,4 +17,4 @@ func _on_Area_body_entered(body):
 
 func _on_DialogArea_body_exited(body):
 	$Graphics.visible = true
-#	queue_free() 
+	queue_free() 

@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/combined kaol.glb-0401cf8f8fc6b1a4343695bdb066db84.scn"
+path="res://.import/combined_kaol.glb-f4589d529a20f2f66cc8d62ed369b3e4.scn"
 
 [deps]
 
-source_file="res://source/Player/player assets/kaol mesh/combined kaol.glb"
-dest_files=[ "res://.import/combined kaol.glb-0401cf8f8fc6b1a4343695bdb066db84.scn" ]
+source_file="res://source/Player/player assets/kaol mesh/combined_kaol.glb"
+dest_files=[ "res://.import/combined_kaol.glb-f4589d529a20f2f66cc8d62ed369b3e4.scn" ]
 
 [params]
 

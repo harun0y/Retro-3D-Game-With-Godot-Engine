@@ -5,7 +5,7 @@
 [ext_resource path="res://source/enemies/Mage/magician.glb" type="PackedScene" id=3]
 [ext_resource path="res://source/Player/scenes/HealthManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://source/enemies/enemy stuff/HitBox.tscn" type="PackedScene" id=5]
-[ext_resource path="res://source/enemies/magician/magician/FireballSpawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://source/enemies/MagicballSpawner.gd" type="Script" id=6]
 [ext_resource path="res://source/enemies/enemy stuff/Monster.gd" type="Script" id=7]
 [ext_resource path="res://source/enemies/magician/staff.glb" type="PackedScene" id=8]
 [ext_resource path="res://source/enemies/magician/magic staff.png" type="Texture" id=9]
@@ -518,8 +518,9 @@ ignore_rotation = true
 [node name="AimAtObject" type="Spatial" parent="."]
 script = ExtResource( 10 )
 
-[node name="FireballSpawner" parent="AimAtObject" instance=ExtResource( 6 )]
+[node name="FireballSpawner" type="Spatial" parent="AimAtObject"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.55121, 1.42717 )
+script = ExtResource( 6 )
 
 [node name="BloodParticles" parent="." instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50508, 0 )

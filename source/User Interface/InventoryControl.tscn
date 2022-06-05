@@ -38,8 +38,10 @@ texture = ExtResource( 3 )
 [node name="LabelControl" type="Control" parent="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.561218
-margin_right = -0.561218
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 30.0
+margin_bottom = 30.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -83,8 +85,10 @@ For Next LV:"
 scroll_active = false
 
 [node name="StatsControl" type="Control" parent="TextureRect"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 40.0
+margin_top = 30.0
+margin_right = 80.0
+margin_bottom = 70.0
 
 [node name="lvl" type="RichTextLabel" parent="TextureRect/StatsControl"]
 margin_left = 357.439
