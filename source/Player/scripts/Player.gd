@@ -189,7 +189,7 @@ func attack(heavy):
 		isAttacking = true
 		frozen = true
 		$Timers/AttackTimer.wait_time = animationPlayer.get_animation("combo attack no 1").length - 1.5
-		$Timers/AttackTimer/ComboTimer.wait_time = animationPlayer.get_animation("combo attack no 1").length 
+		$Timers/AttackTimer/ComboTimer.wait_time = animationPlayer.get_animation("combo attack no 1").length - 1
 		$Timers/AttackTimer.start()
 		$Timers/AttackTimer/ComboTimer.start()
 		$AnimationTree.set("parameters/States/current", 0)
@@ -200,7 +200,7 @@ func attack(heavy):
 		isAttacking = true
 		frozen = true
 		$Timers/AttackTimer.wait_time = animationPlayer.get_animation("combo attack no 2").length - 0.7
-		$Timers/AttackTimer/ComboTimer.wait_time = animationPlayer.get_animation("combo attack no 2").length + 0.3
+		$Timers/AttackTimer/ComboTimer.wait_time = animationPlayer.get_animation("combo attack no 2").length - 0.2
 		$Timers/AttackTimer.start()
 		$Timers/AttackTimer/ComboTimer.start()
 		$AnimationTree.set("parameters/States/current", 1)
@@ -277,7 +277,7 @@ func kill():
 	$AnimationTree.active = false
 	$Pivot/combined_kaol/AnimationPlayer.play("death")
 	freeze()
-	$Control/AnimationPlayer.play("death_screen")
+	$DeathScreenControl/AnimationPlayer.play("death_screen")
 
 func freeze():
 	frozen = true

@@ -34,7 +34,7 @@ extents = Vector3( 7.15378, 6.09744, 5.45562 )
 [sub_resource type="BoxShape" id=6]
 extents = Vector3( 0.228104, 1.1659, 0.0418768 )
 
-[sub_resource type="Shader" id=42]
+[sub_resource type="Shader" id=7]
 code = "shader_type spatial; 
 render_mode skip_vertex_transform, diffuse_lambert_wrap;
 
@@ -70,8 +70,8 @@ void fragment() {
 	SPECULAR = specular_intensity;
 }"
 
-[sub_resource type="ShaderMaterial" id=43]
-shader = SubResource( 42 )
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/specular_intensity = null
 shader_param/resolution = 128.0
@@ -80,21 +80,21 @@ shader_param/uv_scale = Vector2( 1, 1 )
 shader_param/uv_offset = Vector2( 0, 0 )
 shader_param/albedoTex = ExtResource( 13 )
 
-[sub_resource type="CubeMesh" id=44]
+[sub_resource type="CubeMesh" id=9]
 size = Vector3( 3.134, 3, 2.116 )
 
-[sub_resource type="SpatialMaterial" id=45]
+[sub_resource type="SpatialMaterial" id=10]
 flags_transparent = true
 albedo_color = Color( 0.529412, 0, 0, 0.737255 )
 
-[sub_resource type="CylinderMesh" id=46]
+[sub_resource type="CylinderMesh" id=11]
 height = 1.0
 
-[sub_resource type="SpatialMaterial" id=47]
+[sub_resource type="SpatialMaterial" id=12]
 flags_transparent = true
 albedo_color = Color( 1, 0.423529, 0.423529, 0.513726 )
 
-[sub_resource type="SpatialMaterial" id=49]
+[sub_resource type="SpatialMaterial" id=13]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
@@ -105,7 +105,7 @@ particles_anim_loop = false
 albedo_color = Color( 0.701961, 0.701961, 0.701961, 1 )
 albedo_texture = ExtResource( 15 )
 
-[sub_resource type="ParticlesMaterial" id=50]
+[sub_resource type="ParticlesMaterial" id=14]
 emission_shape = 1
 emission_sphere_radius = 0.2
 direction = Vector3( 0, 0, 0 )
@@ -117,71 +117,71 @@ linear_accel = 0.04
 linear_accel_random = 1.0
 scale = 0.44
 
-[sub_resource type="QuadMesh" id=51]
+[sub_resource type="QuadMesh" id=15]
 
-[sub_resource type="CapsuleShape" id=7]
+[sub_resource type="CapsuleShape" id=16]
 radius = 0.5
 height = 2.0
 
-[sub_resource type="AnimationNodeAdd2" id=8]
+[sub_resource type="AnimationNodeAdd2" id=17]
 filter_enabled = true
 filters = [ "kaol bones/Skeleton:mixamorig_RightArm", "kaol bones/Skeleton:mixamorig_RightForeArm", "kaol bones/Skeleton:mixamorig_RightHand", "kaol bones/Skeleton:mixamorig_RightShoulder" ]
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "walking"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "disarm over shoulder"
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "disarm over shoulder mirror"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "disarm underarm"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "disarm underarm mirror"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "sitting idle"
 
-[sub_resource type="AnimationNodeAnimation" id=56]
+[sub_resource type="AnimationNodeAnimation" id=24]
 animation = "drink"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "falling idle"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=26]
 animation = "hard landing"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=27]
 animation = "combo attack no 2"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=28]
 animation = "attack combo no 3"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=29]
 animation = "running jump"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=30]
 animation = "rolling forward"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=31]
 animation = "heavy punch right"
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=32]
 animation = "gunplay"
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=33]
 animation = "heavy punch left"
 
-[sub_resource type="AnimationNodeAnimation" id=25]
+[sub_resource type="AnimationNodeAnimation" id=34]
 animation = "sword on shoulder R"
 
-[sub_resource type="AnimationNodeAnimation" id=26]
+[sub_resource type="AnimationNodeAnimation" id=35]
 animation = "combo attack no 1"
 
-[sub_resource type="AnimationNodeTransition" id=27]
+[sub_resource type="AnimationNodeTransition" id=36]
 input_count = 7
 input_0/name = "drink"
 input_0/auto_advance = false
@@ -198,15 +198,15 @@ input_5/auto_advance = false
 input_6/name = "sword on shoulder R"
 input_6/auto_advance = false
 
-[sub_resource type="AnimationNodeOneShot" id=28]
+[sub_resource type="AnimationNodeOneShot" id=37]
 fadein_time = 0.45
 fadeout_time = 0.45
 
-[sub_resource type="AnimationNodeOneShot" id=29]
+[sub_resource type="AnimationNodeOneShot" id=38]
 filter_enabled = true
 filters = [ "kaol bones/Skeleton:mixamorig_Head", "kaol bones/Skeleton:mixamorig_HeadTop_End", "kaol bones/Skeleton:mixamorig_LeftArm", "kaol bones/Skeleton:mixamorig_LeftForeArm", "kaol bones/Skeleton:mixamorig_LeftHand", "kaol bones/Skeleton:mixamorig_LeftShoulder", "kaol bones/Skeleton:mixamorig_Neck", "kaol bones/Skeleton:mixamorig_Spine", "kaol bones/Skeleton:mixamorig_Spine1", "kaol bones/Skeleton:mixamorig_Spine2", "kaol bones/Skeleton:mixamorig_head", "kaol bones/Skeleton:mixamorig_head_top_end", "kaol bones/Skeleton:mixamorig_left_arm", "kaol bones/Skeleton:mixamorig_left_fore_arm", "kaol bones/Skeleton:mixamorig_left_hand", "kaol bones/Skeleton:mixamorig_left_shoulder", "kaol bones/Skeleton:mixamorig_neck", "kaol bones/Skeleton:mixamorig_spine_2" ]
 
-[sub_resource type="AnimationNodeTransition" id=30]
+[sub_resource type="AnimationNodeTransition" id=39]
 input_count = 11
 xfade_time = 0.2
 input_0/name = "combo1_0"
@@ -232,45 +232,45 @@ input_9/auto_advance = false
 input_10/name = "sitting idle"
 input_10/auto_advance = false
 
-[sub_resource type="AnimationNodeTimeScale" id=31]
+[sub_resource type="AnimationNodeTimeScale" id=40]
 
-[sub_resource type="AnimationNodeTimeScale" id=52]
+[sub_resource type="AnimationNodeTimeScale" id=41]
 
-[sub_resource type="AnimationNodeTimeScale" id=53]
+[sub_resource type="AnimationNodeTimeScale" id=42]
 
-[sub_resource type="AnimationNodeTimeScale" id=54]
+[sub_resource type="AnimationNodeTimeScale" id=43]
 
-[sub_resource type="AnimationNodeTimeScale" id=55]
+[sub_resource type="AnimationNodeTimeScale" id=44]
 
-[sub_resource type="AnimationNodeTimeScale" id=32]
+[sub_resource type="AnimationNodeTimeScale" id=45]
 
-[sub_resource type="AnimationNodeTransition" id=33]
+[sub_resource type="AnimationNodeTransition" id=46]
 input_count = 2
 input_0/name = "state 0"
 input_0/auto_advance = false
 input_1/name = "state 1"
 input_1/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=34]
+[sub_resource type="AnimationNodeAnimation" id=47]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=35]
+[sub_resource type="AnimationNodeAnimation" id=48]
 animation = "run "
 
-[sub_resource type="AnimationNodeAnimation" id=36]
+[sub_resource type="AnimationNodeAnimation" id=49]
 animation = "walking"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id=37]
-blend_point_0/node = SubResource( 34 )
+[sub_resource type="AnimationNodeBlendSpace1D" id=50]
+blend_point_0/node = SubResource( 47 )
 blend_point_0/pos = 0.66
-blend_point_1/node = SubResource( 35 )
+blend_point_1/node = SubResource( 48 )
 blend_point_1/pos = 10.0
-blend_point_2/node = SubResource( 36 )
+blend_point_2/node = SubResource( 49 )
 blend_point_2/pos = 3.9
 min_space = 0.0
 max_space = 10.0
 
-[sub_resource type="AnimationNodeTransition" id=38]
+[sub_resource type="AnimationNodeTransition" id=51]
 input_count = 2
 xfade_time = 0.4
 input_0/name = "state 0"
@@ -278,77 +278,76 @@ input_0/auto_advance = false
 input_1/name = "state 1"
 input_1/auto_advance = false
 
-[sub_resource type="AnimationNodeBlendTree" id=39]
-graph_offset = Vector2( -2479.76, -331.68 )
-nodes/Add2/node = SubResource( 8 )
+[sub_resource type="AnimationNodeBlendTree" id=52]
+graph_offset = Vector2( -1990.94, -74.8196 )
+nodes/Add2/node = SubResource( 17 )
 nodes/Add2/position = Vector2( -1700, -380 )
-nodes/Animation/node = SubResource( 26 )
+nodes/Animation/node = SubResource( 35 )
 nodes/Animation/position = Vector2( -2258, 153 )
-"nodes/Animation 10/node" = SubResource( 9 )
+"nodes/Animation 10/node" = SubResource( 18 )
 "nodes/Animation 10/position" = Vector2( -2120, 20 )
-"nodes/Animation 11/node" = SubResource( 10 )
+"nodes/Animation 11/node" = SubResource( 19 )
 "nodes/Animation 11/position" = Vector2( -2680, -180 )
-"nodes/Animation 12/node" = SubResource( 11 )
+"nodes/Animation 12/node" = SubResource( 20 )
 "nodes/Animation 12/position" = Vector2( -2480, -180 )
-"nodes/Animation 13/node" = SubResource( 12 )
+"nodes/Animation 13/node" = SubResource( 21 )
 "nodes/Animation 13/position" = Vector2( -2680, -100 )
-"nodes/Animation 14/node" = SubResource( 13 )
+"nodes/Animation 14/node" = SubResource( 22 )
 "nodes/Animation 14/position" = Vector2( -2500, -100 )
-"nodes/Animation 15/node" = SubResource( 14 )
+"nodes/Animation 15/node" = SubResource( 23 )
 "nodes/Animation 15/position" = Vector2( -1800, 460 )
-"nodes/Animation 16/node" = SubResource( 56 )
+"nodes/Animation 16/node" = SubResource( 24 )
 "nodes/Animation 16/position" = Vector2( -2460, -300 )
-"nodes/Animation 17/node" = SubResource( 16 )
+"nodes/Animation 17/node" = SubResource( 25 )
 "nodes/Animation 17/position" = Vector2( -2100, -420 )
-"nodes/Animation 18/node" = SubResource( 17 )
+"nodes/Animation 18/node" = SubResource( 26 )
 "nodes/Animation 18/position" = Vector2( -2100, 360 )
-"nodes/Animation 2/node" = SubResource( 18 )
+"nodes/Animation 2/node" = SubResource( 27 )
 "nodes/Animation 2/position" = Vector2( -2070, 153 )
-"nodes/Animation 3/node" = SubResource( 19 )
+"nodes/Animation 3/node" = SubResource( 28 )
 "nodes/Animation 3/position" = Vector2( -1890, 153 )
-"nodes/Animation 4/node" = SubResource( 20 )
+"nodes/Animation 4/node" = SubResource( 29 )
 "nodes/Animation 4/position" = Vector2( -1940, 360 )
-"nodes/Animation 5/node" = SubResource( 21 )
+"nodes/Animation 5/node" = SubResource( 30 )
 "nodes/Animation 5/position" = Vector2( -2099, 462 )
-"nodes/Animation 6/node" = SubResource( 22 )
+"nodes/Animation 6/node" = SubResource( 31 )
 "nodes/Animation 6/position" = Vector2( -1953, 252 )
-"nodes/Animation 7/node" = SubResource( 23 )
+"nodes/Animation 7/node" = SubResource( 32 )
 "nodes/Animation 7/position" = Vector2( -2250, 252 )
-"nodes/Animation 8/node" = SubResource( 24 )
+"nodes/Animation 8/node" = SubResource( 33 )
 "nodes/Animation 8/position" = Vector2( -2124, 252 )
-"nodes/Animation 9/node" = SubResource( 25 )
+"nodes/Animation 9/node" = SubResource( 34 )
 "nodes/Animation 9/position" = Vector2( -1980, 20 )
-nodes/InteractStates/node = SubResource( 27 )
+nodes/InteractStates/node = SubResource( 36 )
 nodes/InteractStates/position = Vector2( -2140, -280 )
-nodes/OneShotAll/node = SubResource( 28 )
+nodes/OneShotAll/node = SubResource( 37 )
 nodes/OneShotAll/position = Vector2( -1340, -120 )
-nodes/OneShotInteract/node = SubResource( 29 )
+nodes/OneShotInteract/node = SubResource( 38 )
 nodes/OneShotInteract/position = Vector2( -1540, -280 )
-nodes/States/node = SubResource( 30 )
+nodes/States/node = SubResource( 39 )
 nodes/States/position = Vector2( -1460, 80 )
-nodes/TimeScale/node = SubResource( 32 )
+nodes/TimeScale/node = SubResource( 45 )
 nodes/TimeScale/position = Vector2( -1929, 462 )
-"nodes/TimeScale 2/node" = SubResource( 31 )
+"nodes/TimeScale 2/node" = SubResource( 40 )
 "nodes/TimeScale 2/position" = Vector2( -2300, -300 )
-"nodes/TimeScale 3/node" = SubResource( 52 )
+"nodes/TimeScale 3/node" = SubResource( 41 )
 "nodes/TimeScale 3/position" = Vector2( -1620, 0 )
-"nodes/TimeScale 4/node" = SubResource( 53 )
+"nodes/TimeScale 4/node" = SubResource( 42 )
 "nodes/TimeScale 4/position" = Vector2( -1620, 20 )
-"nodes/TimeScale 5/node" = SubResource( 54 )
+"nodes/TimeScale 5/node" = SubResource( 43 )
 "nodes/TimeScale 5/position" = Vector2( -1620, 40 )
-"nodes/TimeScale 6/node" = SubResource( 55 )
-"nodes/TimeScale 6/position" = Vector2( -1620, 60 )
-nodes/Transition/node = SubResource( 33 )
+"nodes/TimeScale 6/node" = SubResource( 44 )
+"nodes/TimeScale 6/position" = Vector2( -1620, 120 )
+nodes/Transition/node = SubResource( 46 )
 nodes/Transition/position = Vector2( -1860, -200 )
-nodes/idle2walk/node = SubResource( 37 )
+nodes/idle2walk/node = SubResource( 50 )
 nodes/idle2walk/position = Vector2( -2100, -540 )
-nodes/idleStates/node = SubResource( 38 )
+nodes/idleStates/node = SubResource( 51 )
 nodes/idleStates/position = Vector2( -1900, -420 )
 nodes/output/position = Vector2( -1180, -100 )
-node_connections = [ "TimeScale 3", 0, "Animation", "output", 0, "OneShotAll", "Add2", 0, "idleStates", "Add2", 1, "Transition", "OneShotInteract", 0, "Add2", "OneShotInteract", 1, "InteractStates", "Transition", 0, "Animation 10", "Transition", 1, "Animation 9", "OneShotAll", 0, "OneShotInteract", "OneShotAll", 1, "States", "TimeScale 2", 0, "Animation 16", "States", 0, "TimeScale 3", "States", 1, "TimeScale 4", "States", 2, "TimeScale 5", "States", 3, "TimeScale 6", "States", 4, "Animation 8", "States", 5, "Animation 6", "States", 6, "Animation 4", "States", 7, "Animation 18", "States", 8, "TimeScale", "States", 10, "Animation 15", "idleStates", 0, "idle2walk", "idleStates", 1, "Animation 17", "InteractStates", 0, "TimeScale 2", "InteractStates", 1, "Animation 11", "InteractStates", 2, "Animation 12", "InteractStates", 3, "Animation 13", "InteractStates", 4, "Animation 14", "TimeScale", 0, "Animation 5", "TimeScale 4", 0, "Animation 2", "TimeScale 6", 0, "Animation 7", "TimeScale 5", 0, "Animation 3" ]
+node_connections = [ "output", 0, "OneShotAll", "OneShotAll", 0, "OneShotInteract", "OneShotAll", 1, "States", "TimeScale 2", 0, "Animation 16", "States", 0, "TimeScale 3", "States", 1, "TimeScale 4", "States", 2, "TimeScale 5", "States", 3, "TimeScale 6", "States", 4, "Animation 8", "States", 5, "Animation 6", "States", 6, "Animation 4", "States", 7, "Animation 18", "States", 8, "TimeScale", "States", 10, "Animation 15", "TimeScale", 0, "Animation 5", "TimeScale 6", 0, "Animation 7", "TimeScale 3", 0, "Animation", "TimeScale 4", 0, "Animation 2", "Add2", 0, "idleStates", "Add2", 1, "Transition", "InteractStates", 0, "TimeScale 2", "InteractStates", 1, "Animation 11", "InteractStates", 2, "Animation 12", "InteractStates", 3, "Animation 13", "InteractStates", 4, "Animation 14", "Transition", 0, "Animation 10", "Transition", 1, "Animation 9", "TimeScale 5", 0, "Animation 3", "idleStates", 0, "idle2walk", "idleStates", 1, "Animation 17", "OneShotInteract", 0, "Add2", "OneShotInteract", 1, "InteractStates" ]
 
-[sub_resource type="Animation" id=48]
-resource_name = "death_screen"
+[sub_resource type="Animation" id=53]
 length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:visible")
@@ -389,10 +388,10 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="SphereShape" id=40]
+[sub_resource type="SphereShape" id=54]
 radius = 8.08264
 
-[sub_resource type="SphereShape" id=41]
+[sub_resource type="SphereShape" id=55]
 radius = 24.2502
 
 [node name="Player" type="KinematicBody" groups=[
@@ -409,6 +408,17 @@ transform = Transform( -1, -1.84627e-08, -8.5451e-08, 1.77636e-15, 0.977445, -0.
 
 [node name="combined_kaol" parent="Pivot" instance=ExtResource( 3 )]
 transform = Transform( -3, 0, 2.62268e-07, 0, 3, 0, -2.62268e-07, 0, -3, 0, 0, 0 )
+
+[node name="Skeleton" parent="Pivot/combined_kaol/kaol bones" index="0"]
+bones/0/bound_children = [ NodePath("hips_bone") ]
+bones/1/bound_children = [ NodePath("spine_bone") ]
+bones/5/bound_children = [ NodePath("head_bone") ]
+bones/8/bound_children = [ NodePath("l_arm_bone") ]
+bones/10/bound_children = [ NodePath("BoneAttachment2") ]
+bones/12/bound_children = [ NodePath("r_arm_bone") ]
+bones/14/bound_children = [ NodePath("BoneAttachment") ]
+bones/15/bound_children = [ NodePath("l_leg_bone") ]
+bones/20/bound_children = [ NodePath("r_leg_bone") ]
 
 [node name="kaolzaogoch" parent="Pivot/combined_kaol/kaol bones/Skeleton" index="0"]
 material/0 = ExtResource( 2 )
@@ -522,20 +532,20 @@ bone_name = "mixamorig_left_hand"
 transform = Transform( -0.0968669, -0.486169, -0.0652369, 0.485681, -0.104382, 0.0567336, -0.0687837, -0.0523772, 0.492468, -2.30871, 3.77053, 0.0776424 )
 
 [node name="Pistol" parent="Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment2/gun" index="0"]
-material/0 = SubResource( 43 )
+material/0 = SubResource( 8 )
 
 [node name="potion" type="Spatial" parent="Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment2"]
 visible = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment2/potion"]
 transform = Transform( 1, -3.72529e-09, -3.72529e-09, 1.11759e-08, 1, -1.00583e-07, 1.49012e-08, 1.03959e-07, 1, -1.93604, 4.38094, 0.34655 )
-mesh = SubResource( 44 )
-material/0 = SubResource( 45 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment2/potion"]
 transform = Transform( -0.0296519, -0.999442, -0.0154551, 0.830605, -0.0160357, -0.556633, 0.556074, -0.0293417, 0.830615, -3.97765, 4.41817, 0.254387 )
-mesh = SubResource( 46 )
-material/0 = SubResource( 47 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
 
 [node name="bulletSpawner" type="Spatial" parent="Pivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00531697, 2.35253, -1.93499 )
@@ -543,7 +553,7 @@ script = ExtResource( 10 )
 
 [node name="BloodParticles2" type="Particles" parent="Pivot/bulletSpawner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00531697, 0.0389931, -0.118098 )
-material_override = SubResource( 49 )
+material_override = SubResource( 13 )
 emitting = false
 amount = 10
 lifetime = 0.6
@@ -551,13 +561,13 @@ one_shot = true
 explosiveness = 1.0
 fixed_fps = 30
 local_coords = false
-process_material = SubResource( 50 )
-draw_pass_1 = SubResource( 51 )
+process_material = SubResource( 14 )
+draw_pass_1 = SubResource( 15 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0 )
 visible = false
-shape = SubResource( 7 )
+shape = SubResource( 16 )
 
 [node name="SpringArm" type="SpringArm" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 2.4, 0 )
@@ -570,7 +580,7 @@ fov = 82.0
 far = 256.0
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 39 )
+tree_root = SubResource( 52 )
 anim_player = NodePath("../Pivot/combined_kaol/AnimationPlayer")
 active = true
 parameters/Add2/add_amount = 1.0
@@ -648,7 +658,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DeathScreenControl"]
-anims/death_screen = SubResource( 48 )
+anims/death_screen = SubResource( 53 )
 
 [node name="InventoryControl" parent="." instance=ExtResource( 11 )]
 
@@ -657,14 +667,14 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="AlertAreaHearing"]
-shape = SubResource( 40 )
+shape = SubResource( 54 )
 
 [node name="AlertAreaLos" type="Area" parent="."]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="AlertAreaLos"]
-shape = SubResource( 41 )
+shape = SubResource( 55 )
 
 [node name="BloodParticles" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80251, 0 )

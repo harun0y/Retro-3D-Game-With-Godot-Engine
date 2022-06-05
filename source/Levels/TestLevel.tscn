@@ -124,7 +124,7 @@ environment = SubResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -41.8897, 3, 2.57004 )
-damage = 100
+damage = 20
 
 [node name="Navigation" type="Navigation" parent="."]
 
@@ -140,6 +140,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.7008, 0, 0 )
 
 [node name="Blitz" parent="Navigation" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.0957, 2.70268, 2.77543 )
+
+[node name="Blitz2" parent="Navigation" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.0957, 2.70268, -52.0858 )
+
+[node name="Blitz3" parent="Navigation" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -71.698, 2.70268, -52.0858 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, 0, 37.2995, 0 )

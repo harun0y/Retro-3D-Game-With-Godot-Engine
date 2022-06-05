@@ -132,8 +132,10 @@ func hurt(damage: int, dir: Vector3):
 	bloodParticles.emitting = true
 	if current_state == STATES.ATTACK and randi()%5+1 != 5:
 		current_state = STATES.CHASE
-		#anim_player.play("impact") ANIMASYON EKLENECEK
-		anim_player.play("idle_loop")
+		if anim_player.has_animation("impact"):
+			anim_player.play("impact")
+		else:
+			anim_player.has_animation("idle_loop")
 
 func start_attack():
 	can_attack = false
