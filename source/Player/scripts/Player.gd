@@ -7,7 +7,7 @@ export var acceleration = 70
 export var friction = 60
 export var air_friction = 10
 export var gravity = -40
-export var jump_impulse = 20
+export var jump_impulse = 14
 export var mouse_sensitivity = .1
 export var controller_sensitivity = 3
 export var rot_speed = 5
@@ -115,7 +115,7 @@ func get_direction(input_vector):
 func apply_movement(input_vector, direction, delta):
 	var speed
 	if isRolling: # roll için ekstra hız
-		speed = max_speed * 1.75
+		speed = max_speed * 1.2
 	else:
 		speed = max_speed
 	if direction != Vector3.ZERO:

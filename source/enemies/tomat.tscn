@@ -51,7 +51,7 @@ ignore_rotation = true
 script = ExtResource( 10 )
 
 [node name="FireballSpawner" parent="AimAtObject" instance=ExtResource( 6 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.93977, -0.0137503 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.93977, 0.544266 )
 
 [node name="BloodParticles" parent="." instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1721, -0.382408 )

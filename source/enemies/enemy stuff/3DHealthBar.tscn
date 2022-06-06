@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://circle32.png" type="Texture" id=1]
+[ext_resource path="res://source/enemies/enemy stuff/3DHealthBar.gd" type="Script" id=2]
+
+[node name="3DHealthBar" type="Sprite3D"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.854, 0.00686964 )
+modulate = Color( 1, 0, 0, 1 )
+billboard = 2
+texture = ExtResource( 1 )
+script = ExtResource( 2 )

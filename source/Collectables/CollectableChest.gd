@@ -7,7 +7,7 @@ func _ready():
 
 func destroy():
 	$Mesh/chest.visible = false
-	$CollisionShape.disabled = true
+	$CollisionShape.set_deferred("disabled", true)
 	$Graphics/dustParticles.emitting = true
 	$Graphics/woodParticles.emitting = true
 	$Mesh/KaolSwords.visible = true

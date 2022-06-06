@@ -3,7 +3,8 @@ extends Spatial
 var fireball = preload("res://source/enemies/magician/magician/Magicball.tscn")
 
 var bodies_to_exclude = []
-var damage = 15
+export var damage = 15
+export var speed = 15
 
 func set_damage(_damage: int):
 	damage = _damage
@@ -17,3 +18,4 @@ func fire():
 	get_tree().get_root().add_child(fireball_inst)
 	fireball_inst.global_transform = global_transform
 	fireball_inst.impact_damage = damage
+	fireball_inst.speed = speed

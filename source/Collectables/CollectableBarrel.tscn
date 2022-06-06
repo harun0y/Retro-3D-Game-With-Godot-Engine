@@ -71,7 +71,7 @@ _data = [ Vector2( 0.0110294, 0.973517 ), 0.0, -1.37059, 0, 0, Vector2( 0.996324
 [sub_resource type="CurveTexture" id=6]
 curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=12]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 1
 emission_sphere_radius = 0.2
 direction = Vector3( 0, 50.585, 0 )
@@ -90,7 +90,7 @@ flags_transparent = true
 flags_unshaded = true
 albedo_color = Color( 0.513726, 0.513726, 0.513726, 0.0941176 )
 
-[sub_resource type="ParticlesMaterial" id=13]
+[sub_resource type="ParticlesMaterial" id=10]
 emission_shape = 1
 emission_sphere_radius = 0.2
 direction = Vector3( 0, 55, 0 )
@@ -139,7 +139,7 @@ speed_scale = 1.5
 explosiveness = 1.0
 fixed_fps = 30
 local_coords = false
-process_material = SubResource( 12 )
+process_material = SubResource( 7 )
 draw_pass_1 = SubResource( 8 )
 
 [node name="dustParticles" type="Particles" parent="Graphics"]
@@ -154,11 +154,10 @@ speed_scale = 1.5
 explosiveness = 1.0
 fixed_fps = 30
 local_coords = false
-process_material = SubResource( 13 )
+process_material = SubResource( 10 )
 draw_pass_1 = SubResource( 11 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="queue_free"]

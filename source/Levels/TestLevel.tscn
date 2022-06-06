@@ -123,7 +123,7 @@ sword_type = "drslayer"
 environment = SubResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -41.8897, 3, 2.57004 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0244293, 3, 87.8819 )
 damage = 20
 
 [node name="Navigation" type="Navigation" parent="."]

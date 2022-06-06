@@ -11,7 +11,7 @@ func _ready():
 
 func destroy():
 	$Mesh.visible = false
-	$CollisionShape.disabled = false
+	$CollisionShape.set_deferred("disabled", true)
 	$Graphics/dustParticles.emitting = true
 	$Graphics/woodParticles.emitting = true
 	$Timer.start()

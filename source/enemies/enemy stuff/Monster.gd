@@ -84,7 +84,7 @@ func set_state_dead():
 	current_state = STATES.DEAD
 	anim_player.play("dead")
 	character_mover.freeze()
-	get_node("CollisionShape").disabled = true
+	$CollisionShape.set_deferred("disabled", true)
 	expDrop.visible = true
 	expDrop.get_child(0).monitoring = true
 	$Timer.start()

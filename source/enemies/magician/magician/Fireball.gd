@@ -20,4 +20,4 @@ func _physics_process(delta):
 		$SmokeParticles.emitting = true
 		speed = 0
 		$Graphics.hide()
-		$CollisionShape.disabled = true
+		$CollisionShape.set_deferred("disabled", true)
