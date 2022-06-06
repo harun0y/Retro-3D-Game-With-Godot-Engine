@@ -231,6 +231,10 @@ func damageControl():
 				body.bullet_value = 0
 			if body.is_in_group("chest"):
 				body.destroy()
+				if $"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment/KaolSwords/drslayer".visible:
+					damage *= 2
+				elif $"Pivot/combined_kaol/kaol bones/Skeleton/BoneAttachment/KaolSwords/HR sword".visible:
+					damage *= 2
 
 func heal(amount):
 	if not $AnimationTree.get("parameters/OneShotInteract/active") and Input.is_action_just_pressed("1Y") and is_on_floor() and pot_amount > 0:

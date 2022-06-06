@@ -26,6 +26,7 @@ var chase_timer: Timer
 var can_attack = true
 var attack_counter = 0
 var canSpawn = true
+var regen: int = 30
 
 var starting_pos:Vector3
 
@@ -123,7 +124,7 @@ func process_state_attack(delta):
 
 func process_state_healing(delta):
 	character_mover.freeze()
-	var regen: int
+
 	if attack_counter < 15:
 		regen = 30
 	elif regen > 15 and regen < 30:
@@ -163,7 +164,7 @@ func hurt(damage: int, dir: Vector3):
 			anim_player.has_animation("idle_loop")
 	if health_manager.cur_health < 35 and current_state != STATES.DEAD:
 		current_state = STATES.HEALING
-	print(health_manager.cur_health)
+	#print("cur health: " , health_manager.cur_health , "counter: " , attack_counter , "regen: " , regen)
 
 func start_attack():
 	can_attack = false
